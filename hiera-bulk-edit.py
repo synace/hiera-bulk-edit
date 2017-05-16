@@ -53,7 +53,7 @@ def check_paths(paths):
                     usage()
 
 def yaml_files(paths):
-    expanded = flatten([glob2.glob(p + '/**/*.yaml') for p in list(braceexpand(paths))])
+    expanded = flatten([glob2.glob(p + '/**/*.yml') for p in list(braceexpand(paths))])
     return expanded
 
 def code_file_data(f):
@@ -73,7 +73,7 @@ def write_file(f, data):
             data,
             stream=_f,
             Dumper=ruamel.yaml.RoundTripDumper,
-            explicit_start=True,
+            explicit_start=False,
             width=1024)
 
 # main
@@ -87,6 +87,7 @@ check_paths([code_file, yaml_path])
 code_file_data = code_file_data(code_file)
 
 for f in yaml_files(yaml_path):
+    print f
     hiera  = read_file(f)
     _hiera = read_file(f)
 
