@@ -74,6 +74,8 @@ def write_file(f, data):
             stream=_f,
             Dumper=ruamel.yaml.RoundTripDumper,
             explicit_start=False,
+            indent=4,
+            block_seq_indent=4,
             width=1024)
 
 # main
@@ -87,7 +89,6 @@ check_paths([code_file, yaml_path])
 code_file_data = code_file_data(code_file)
 
 for f in yaml_files(yaml_path):
-    print f
     hiera  = read_file(f)
     _hiera = read_file(f)
 
